@@ -1,6 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
 class Map():
     """
@@ -72,6 +73,9 @@ class Map():
         self.world.add_nodes_from(self.names)   
 
     def borders(self):
+        """
+        Defines borders as edges of a networkx graph
+        """
         world = self.world
         names = self.names
         
@@ -233,28 +237,46 @@ class Map():
         # W A
         world.add_edge(names[40], names[41]) # E A        
 
-        self.world = world
 
     def continents(self):
+        """
+        Defines continents as an attribute of the nodes
+        """
         world = self.world
         names = self.names
 
         continents = ["North America", "South America", "Europe", "Africa", "Asia", "Oceania"]
+        colors = ["#b7b725", "#c72a63", "#2ec9fa", "#bc5d00", "#2af462", "#c02ac0"]
+
         for node in names[:9]: 
-            world.nodes[node]["continent"] = continents[0]        
+            world.nodes[node]["continent"] = continents[0]
+            world.nodes[node]["color"] = colors[0]                
         for node in names[9:13]: 
             world.nodes[node]["continent"] = continents[1]   
+            world.nodes[node]["color"] = colors[1]                
         for node in names[13:20]: 
             world.nodes[node]["continent"] = continents[2]
+            world.nodes[node]["color"] = colors[2]                
         for node in names[20:26]: 
             world.nodes[node]["continent"] = continents[3]
+            world.nodes[node]["color"] = colors[3]                
         for node in names[26:38]: 
             world.nodes[node]["continent"] = continents[4]
+            world.nodes[node]["color"] = colors[4]                
         for node in names[38:]: 
-            world.nodes[node]["continent"] = continents[5]            
-        print(world.nodes.data())
+            world.nodes[node]["continent"] = continents[5] 
+            world.nodes[node]["color"] = colors[5]                
+
+    def owner(self):
+        """
+        Define player ownership of a node as an attribute and how much soldiers are on it as weight
+        """    
+        pass
 
     def plot(self):
+        """
+        Plot a beautiful graph of the map
+        """
         world = self.world
         pos = [(1, 0), # alaska
                (2.5, -1), # nw ter
@@ -300,16 +322,21 @@ class Map():
                (12, -8) # e a
                ]
         pos = dict(zip(self.names, pos))
+        node_colors = [world.nodes[n]["color"] for n in world.nodes()]
         
         fig = plt.figure()
 
         axes = fig.add_subplot(1,1,1)
-        nx.draw_networkx(world, with_labels=True, font_weight='bold', pos=pos)
+        nx.draw_networkx(world, with_labels=True, font_weight='bold', pos=pos, node_color=node_colors)
         fig.tight_layout()
         plt.show()
 
+t0 = time.time()
 mappa = Map()
 mappa.states()
 mappa.borders()
 mappa.continents()
+print(time.time() - t0)
+
 mappa.plot()
+
