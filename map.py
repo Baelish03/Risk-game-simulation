@@ -1,16 +1,47 @@
 import json
 import networkx as nx
 import matplotlib.pyplot as plt
-import numpy as np
 import time
 
-class Map():
+class Map:
     """
     Defines states, their paths and own details.
     """
     def __init__(self):
         self.world = nx.Graph()
         self.load_from_json("./countries.json")
+
+    def create_nodes(self, continents_data, countries_data):
+        """
+        Check if nodes in countries' list are the same of continents' list
+        """
+        for continent_name, continent_data in continents_data.items():
+            color = continent_data["color"]
+
+            for country in continent_data["countries"]:
+                if country not in countries_data:
+                    raise ValueError(f"{country} is in continents but not in countries")
+
+                self.world.add_node(
+                    country,
+                    continent=continent_name,
+                    color=color
+                        )
+                
+    def create_edges(self, countries_data):
+        """
+        Check if countries in neighbors' list are in nodes.
+        After check if edge is already in graph.
+        """
+        for country_name, country_data in countries_data.items():
+            self.world.nodes[country_name]["position"] = tuple(country_data["position"]) 
+            for neighbor in country_data["neighbors"]:
+                if neighbor not in self.world.nodes:
+                    raise ValueError(f"Neighbor {neighbor} not in nodes")
+                
+                if not self.world.has_edge(country_name, neighbor):
+                    self.world.add_edge(country_name, neighbor)
+
 
     def load_from_json(self, filename):
         """
@@ -22,20 +53,11 @@ class Map():
         """
         with open(filename, "r", encoding="utf-8") as file:
             data = json.load(file)
+        countries_data = data["countries"]
+        continents_data = data["continents"]
+        self.create_nodes(continents_data, countries_data)
+        self.create_edges(countries_data)
 
-        for continent_name, continent_data in data["continents"].items():
-            print(continent_name, "\n", continent_data)
-            color = continent_data["color"]
-
-            for country in continent_data["countries"]:
-                self.world.add_node(
-                    country,
-                    continent=continent_name,
-                    color=color
-                )
-
-
-        self.world.add_edges_from(data["borders"])             
 
     def owner(self):
         """
@@ -47,21 +69,22 @@ class Map():
         """
         Plot a beautiful graph of the map
         """
-        world = self.world
-        
-        pos = dict(zip(self.names, pos))
-        node_colors = [world.nodes[n]["color"] for n in world.nodes()]
-        
-        fig = plt.figure()
+        position = nx.get_node_attributes(self.world, "position")
+        node_colors = nx.get_node_attributes(self.world, "color").values()
 
-        axes = fig.add_subplot(1,1,1)
-        nx.draw_networkx(world, with_labels=True, font_weight='bold', pos=pos, node_color=node_colors)
-        fig.tight_layout()
+        nx.draw_networkx(self.world, 
+                         with_labels=True,
+                         font_weight='bold',
+                         pos=position,
+                         node_color=node_colors,
+                         node_size=800,
+                         edge_color="black")
+        plt.axis("off")
+        plt.tight_layout()
         plt.show()
 
-t0 = time.time()
+start = time.perf_counter()
 mappa = Map()
-print(time.time() - t0)
-
+print(f"Time passed: {time.perf_counter() - start:.4f}s")
 mappa.plot()
 
