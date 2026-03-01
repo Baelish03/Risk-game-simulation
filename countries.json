@@ -29,7 +29,7 @@
             "neighbors": ["Alberta", "Ontario", "Eastern United States", "Central America"]
         },
         "Eastern United States": {
-            "position": [3.5, -2,5],
+            "position": [3.5, -2.5],
             "neighbors": ["Western United States", "Ontario", "Quebec", "Central America"]
         },
         "Central America": {
@@ -73,7 +73,7 @@
             "neighbors": ["Great Britain", "Scandinavia", "Ukraine", "Southern Europe", "Western Europe"]
         },
         "Western Europe": {
-            "position": [7, -4],
+            "position": [6, -4],
             "neighbors": ["Great Britain", "Northern Europe", "Southern Europe", "North Africa"]
         },
         "Southern Europe": {
@@ -165,7 +165,7 @@
             "neighbors": ["Indonesia", "New Guinea", "Eastern Australia"]
         },
         "Eastern Australia": {
-            "position": [12, 8],
+            "position": [12, -8],
             "neighbors": ["Western Australia", "New Guinea"]
         }
     },
@@ -173,7 +173,7 @@
     "continents": {
         "North America" : {
             "color" : "#b7b725",
-            "countries" : ["Alaska", "Northern Territory", "Greenland", "Alberta", "Ontario", "Quebec", "Western United States", "Eastern United States", "Central America"]
+            "countries" : ["Alaska", "Northwest Territory", "Greenland", "Alberta", "Ontario", "Quebec", "Western United States", "Eastern United States", "Central America"]
         },
         "South America": {
             "color": "#c72a63",
@@ -193,7 +193,7 @@
         },
         "Oceania": {
             "color":  "#c02ac0",
-            "countries": ["Indonesia", "New Guinea", "Western Australia", "Eastern Australia"]
+            "countries": ["Indonesia", "New Guinea", "Eastern Australia", "Western Australia"]
         }
     } 
 }
