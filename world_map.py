@@ -1,9 +1,8 @@
 import json
 import networkx as nx
 import matplotlib.pyplot as plt
-import time
 
-class Map:
+class WorldMap:
     """
     Defines states, their paths and own details.
     """
@@ -63,7 +62,9 @@ class Map:
         """
         Define player ownership of a node as an attribute and how much soldiers are on it as weight
         """    
-        pass
+        nx.set_node_attributes(self.world, "NonePlayer", "Owner")
+        nx.set_node_attributes(self.world, 0, "Armies")
+
 
     def plot(self):
         """
@@ -82,9 +83,4 @@ class Map:
         plt.axis("off")
         plt.tight_layout()
         plt.show()
-
-start = time.perf_counter()
-mappa = Map()
-print(f"Time passed: {time.perf_counter() - start:.4f}s")
-mappa.plot()
 
