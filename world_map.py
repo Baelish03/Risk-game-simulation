@@ -41,6 +41,12 @@ class WorldMap:
                 if not self.world.has_edge(country_name, neighbor):
                     self.world.add_edge(country_name, neighbor)
 
+    def owner(self):
+        """
+        Define player ownership of a node as an attribute and how much soldiers are on it as weight
+        """    
+        nx.set_node_attributes(self.world, "NonePlayer", "owner")
+        nx.set_node_attributes(self.world, 0, "armies")
 
     def load_from_json(self, filename):
         """
@@ -56,15 +62,7 @@ class WorldMap:
         continents_data = data["continents"]
         self.create_nodes(continents_data, countries_data)
         self.create_edges(countries_data)
-
-
-    def owner(self):
-        """
-        Define player ownership of a node as an attribute and how much soldiers are on it as weight
-        """    
-        nx.set_node_attributes(self.world, "NonePlayer", "Owner")
-        nx.set_node_attributes(self.world, 0, "Armies")
-
+        self.owner()
 
     def plot(self):
         """
@@ -72,14 +70,21 @@ class WorldMap:
         """
         position = nx.get_node_attributes(self.world, "position")
         node_colors = nx.get_node_attributes(self.world, "color").values()
+        label_colors = nx.get_node_attributes(self.world, "label_color")
 
-        nx.draw_networkx(self.world, 
-                         with_labels=True,
+        nx.draw_networkx(self.world,
+                         with_labels=False,
                          font_weight='bold',
                          pos=position,
                          node_color=node_colors,
-                         node_size=800,
-                         edge_color="black")
+                         node_size=400,
+                         edge_color="black"
+                         )
+
+        nx.draw_networkx_labels(self.world,
+                                pos=position,
+                                font_color=label_colors,
+                                font_weight="bold")
         plt.axis("off")
         plt.tight_layout()
         plt.show()
