@@ -17,14 +17,16 @@ if "__main__" == __name__:
 
     ordered_players = setup.players_order()
 
+    for player in ordered_players:
+        player.armies_available = setup.initial_armies()
+
     while [node for node, attributes in world_graph.nodes(data=True) if attributes['owner']=="NonePlayer"] != []:
         for player in ordered_players:
-            player.armies_available = setup.initial_armies()
             choosen_country = setup.strategy_initial_territory(world_graph)
             world_graph, player = setup.assign_initial_territory(world_graph, choosen_country, player)
 
     for player in ordered_players:
-        while player.armies_available > 1:
+        while player.armies_available > 0:
             world_graph, player = setup.add_armies(world_graph, player)
 
         
