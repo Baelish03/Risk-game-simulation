@@ -13,6 +13,10 @@ class Setup:
         random.shuffle(players)
         return players
     
+    def has_free_territories(self, graph):
+        return any(attr["owner"] == "NonePlayer"
+                for _, attr in graph.nodes(data=True))
+    
     def initial_armies(self):
         """
         Assign initial armies to each player

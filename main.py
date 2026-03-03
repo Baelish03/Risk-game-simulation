@@ -3,6 +3,8 @@ import time
 from setup import Setup
 from player import Player
 
+
+
 if "__main__" == __name__:
     start = time.perf_counter()
     world = WorldMap()
@@ -20,17 +22,16 @@ if "__main__" == __name__:
     for player in ordered_players:
         player.armies_available = setup.initial_armies()
 
-    while [node for node, attributes in world_graph.nodes(data=True) if attributes['owner']=="NonePlayer"] != []:
+    while setup.has_free_territories(world_graph):
         for player in ordered_players:
-            choosen_country = setup.strategy_initial_territory(world_graph)
-            world_graph, player = setup.assign_initial_territory(world_graph, choosen_country, player)
+            if not setup.has_free_territories(world_graph):
+                break
+            chosen_country = setup.strategy_initial_territory(world_graph)
+            setup.assign_initial_territory(world_graph, chosen_country, player)
 
     for player in ordered_players:
         while player.armies_available > 0:
-            world_graph, player = setup.add_armies(world_graph, player)
+            setup.add_armies(world_graph, player)
 
-        
-
-    #print(PLAYERS)
     print(f"Time passed: {time.perf_counter() - start:.4f}s")
     world.plot()
