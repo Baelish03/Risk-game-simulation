@@ -23,5 +23,12 @@ if "__main__" == __name__:
             choosen_country = setup.strategy_initial_territory(world_graph)
             world_graph, player = setup.assign_initial_territory(world_graph, choosen_country, player)
 
+    for player in ordered_players:
+        while player.armies_available > 1:
+            world_graph, player = setup.add_armies(world_graph, player)
+
+        
+
+    #print(PLAYERS)
     print(f"Time passed: {time.perf_counter() - start:.4f}s")
     world.plot()

@@ -81,8 +81,14 @@ class WorldMap:
                          edge_color="black"
                          )
 
+        labels = {
+            node: f"{node} \n {self.world.nodes[node]['armies']}"
+            for node in self.world.nodes()
+            }
+
         nx.draw_networkx_labels(self.world,
                                 pos=position,
+                                labels=labels,
                                 font_color=label_colors,
                                 font_weight="bold")
         plt.axis("off")

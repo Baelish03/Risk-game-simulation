@@ -1,4 +1,3 @@
-from player import Player
 import random
 
 class Setup:
@@ -36,14 +35,23 @@ class Setup:
     
     def assign_initial_territory(self, graph, country, player):
         """
-        Assign a single territiry.
+        Assign a single territory.
         For now this funtion is for the initial assignation, but maybe it can be usefu in general.
         """
         graph.nodes[country]["owner"] = player.name
         graph.nodes[country]["armies"] = 1
         graph.nodes[country]["label_color"] = player.color
         player.territories.add(country)
-
+        player.armies_available -=1
+        return graph, player
+    
+    def add_armies(self, graph, player):
+        """
+        For now add armies randomly
+        """
+        country = random.choice(list(player.territories))
+        graph.nodes[country]["armies"] += 1
+        player.armies_available -= 1
         return graph, player
 
 
