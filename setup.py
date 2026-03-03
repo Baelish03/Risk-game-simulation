@@ -9,7 +9,7 @@ class Setup:
         """
         Decide what players' order
         """
-        players = self.players
+        players = self.players[:]
         random.shuffle(players)
         return players
     
