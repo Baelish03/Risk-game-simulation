@@ -1,0 +1,199 @@
+{
+    "countries": {
+        "Alaska": { 
+            "position": [1, 0],
+            "neighbors": ["Kamchatka", "Northwest Territory", "Alberta"]
+        },
+        "Northwest Territory": {
+            "position": [2.5, -1],
+            "neighbors": ["Alaska", "Alberta", "Ontario", "Greenland"]
+        },
+        "Greenland": {
+            "position": [5, -1],
+            "neighbors": ["Northwest Territory", "Ontario", "Quebec", "Iceland"]
+        },
+        "Alberta": {
+            "position": [2, -2],
+            "neighbors": ["Alaska", "Northwest Territory", "Ontario", "Western United States"]
+        },
+        "Ontario": {
+            "position": [3, -2],
+            "neighbors": ["Northwest Territory", "Greenland", "Alberta", "Western United States", "Eastern United States", "Quebec"]
+        },
+        "Quebec": {
+            "position": [4, -2],
+            "neighbors": ["Greenland", "Eastern United States"]
+        },
+        "Western United States": {
+            "position": [2.5, -3],
+            "neighbors": ["Alberta", "Ontario", "Eastern United States", "Central America"]
+        },
+        "Eastern United States": {
+            "position": [3.5, -2.5],
+            "neighbors": ["Western United States", "Ontario", "Quebec", "Central America"]
+        },
+        "Central America": {
+            "position": [2.5, -4],
+            "neighbors": ["Western United States", "Eastern United States", "Venezuela"]
+        },
+        "Venezuela": {
+            "position": [3, -5],
+            "neighbors": ["Central America", "Peru", "Brazil"]
+        },
+        "Peru": {
+            "position": [2, -6],
+            "neighbors": ["Venezuela", "Brazil", "Argentina"]
+        },
+        "Brazil": {
+            "position": [4, -6],
+            "neighbors": ["Venezuela", "Peru", "Argentina", "North Africa"]
+        },
+        "Argentina": {
+            "position": [3, -8],
+            "neighbors": ["Peru", "Brazil"]
+        },
+        "Iceland": {
+            "position": [6, -1.5],
+            "neighbors": ["Greenland", "Scandinavia", "Great Britain"]
+        },
+        "Scandinavia": {
+            "position": [7, -2],
+            "neighbors": ["Iceland", "Great Britain", "Northern Europe", "Ukraine"]
+        },
+        "Ukraine": {
+            "position": [8, -2.5],
+            "neighbors": ["Scandinavia", "Northern Europe", "Southern Europe", "Ural", "Afghanistan", "Middle East"]
+        },
+        "Great Britain": {
+            "position": [5.5, -3],
+            "neighbors": ["Western Europe", "Northern Europe", "Scandinavia", "Iceland"]
+        },
+        "Northern Europe": {
+            "position": [7, -3.5],
+            "neighbors": ["Great Britain", "Scandinavia", "Ukraine", "Southern Europe", "Western Europe"]
+        },
+        "Western Europe": {
+            "position": [6, -4],
+            "neighbors": ["Great Britain", "Northern Europe", "Southern Europe", "North Africa"]
+        },
+        "Southern Europe": {
+            "position": [7, -5],
+            "neighbors": ["Western Europe", "Northern Europe", "Ukraine", "Middle East", "Egypt", "North Africa"]
+        },
+        "North Africa": {
+            "position": [6.5, -6],
+            "neighbors": ["Western Europe", "Southern Europe", "Egypt", "East Africa", "Congo"]
+        },
+        "Egypt": {
+            "position": [7.5, -6],
+            "neighbors": ["Southern Europe", "Middle East", "East Africa", "North Africa"]
+        },
+        "East Africa": {
+            "position": [8, -7],
+            "neighbors": ["Egypt", "Middle East", "Madagascar", "South Africa", "Congo", "North Africa"]
+        },
+        "Congo": {
+            "position": [7, -7],
+            "neighbors": ["North Africa", "East Africa", "South Africa"]
+        },
+        "South Africa": {
+            "position": [7.5, -8],
+            "neighbors": ["Madagascar"]
+        },
+        "Madagascar": {
+            "position": [8.5, -7.5],
+            "neighbors": ["East Africa", "South Africa"]
+        },
+        "Ural": {
+            "position": [9, -2],
+            "neighbors": ["Ukraine", "Afghanistan", "China", "Siberia"]
+        },
+        "Siberia": {
+            "position": [10, -2],
+            "neighbors": ["Ural", "China", "Mongolia", "Irkutsk", "Yakutsk"]
+        },
+        "Yakutsk": {
+            "position": [11, -1],
+            "neighbors": ["Siberia", "Irkutsk", "Kamchatka"]
+        },
+        "Kamchatka": {
+            "position": [12, 0],
+            "neighbors": ["Yakutsk", "Irkutsk", "Mongolia", "Japan", "Alaska"]
+        },
+        "Irkutsk": {
+            "position": [11, -2],
+            "neighbors": ["Siberia", "Yakutsk", "Kamchatka", "Mongolia"]
+        },
+        "Mongolia": {
+            "position": [11, -3],
+            "neighbors": ["Siberia", "Irkutsk", "Kamchatka", "Japan", "China"]
+        },
+        "Japan": {
+            "position": [12, -2.5],
+            "neighbors": ["Kamchatka", "Mongolia"]
+        },
+        "Afghanistan": {
+            "position": [9, -3],
+            "neighbors": ["Ukraine", "Ural", "China", "India", "Middle East"]
+        },
+        "Middle East": {
+            "position": [8, -4.5],
+            "neighbors": ["Southern Europe", "Ukraine", "Afghanistan", "India", "East Africa", "Egypt"]
+        },
+        "India": {
+            "position": [9, -4],
+            "neighbors": ["Middle East", "Afghanistan", "China", "Siam"]
+        },
+        "Siam": {
+            "position": [10, -5],
+            "neighbors": ["India", "China", "Indonesia"]
+        },
+        "China": {
+            "position": [10, -4],
+            "neighbors": ["Siberia", "Mongolia", "Siam", "India", "Afghanistan", "Ural"]
+        },
+        "Indonesia": {
+            "position": [11, -6],
+            "neighbors": ["Siam", "New Guinea", "Western Australia"]
+        },
+        "New Guinea": {
+            "position": [12, -6.5],
+            "neighbors": ["Indonesia", "Western Australia", "Eastern Australia"]
+        },
+        "Western Australia": {
+            "position": [11, -7.5],
+            "neighbors": ["Indonesia", "New Guinea", "Eastern Australia"]
+        },
+        "Eastern Australia": {
+            "position": [12, -8],
+            "neighbors": ["Western Australia", "New Guinea"]
+        }
+    },
+
+    "continents": {
+        "North America" : {
+            "color" : "#b7b725",
+            "countries" : ["Alaska", "Northwest Territory", "Greenland", "Alberta", "Ontario", "Quebec", "Western United States", "Eastern United States", "Central America"]
+        },
+        "South America": {
+            "color": "#c72a63",
+            "countries": ["Venezuela", "Peru", "Brazil", "Argentina"]
+        },
+        "Europe":{
+            "color": "#2ec9fa",
+            "countries": ["Iceland", "Scandinavia", "Ukraine", "Great Britain", "Northern Europe", "Western Europe", "Southern Europe"]
+        },
+        "Africa": {
+            "color": "#bc5d00",
+            "countries": ["Egypt", "North Africa", "East Africa", "Congo", "South Africa", "Madagascar"]
+        },
+        "Asia": {
+            "color": "#2af462",
+            "countries": ["Ural", "Siberia", "Yakutsk", "Kamchatka", "Irkutsk", "Afghanistan", "China", "Mongolia", "Japan", "Middle East", "India", "Siam"]
+        },
+        "Oceania": {
+            "color":  "#c02ac0",
+            "countries": ["Indonesia", "New Guinea", "Eastern Australia", "Western Australia"]
+        }
+    } 
+}
